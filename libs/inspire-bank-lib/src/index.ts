@@ -1,1 +1,1 @@
-export * from './lib/inspire-bank-lib';
+export * from './components/header/header';

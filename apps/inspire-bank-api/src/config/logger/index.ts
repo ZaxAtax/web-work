@@ -1,7 +1,7 @@
 import {$log, PlatformLoggerSettings} from "@tsed/common";
-import {isProduction} from "../envs/index";
+import { environment } from "../../environments/environment";
 
-if (isProduction) {
+if (environment.production) {
   $log.appenders.set("stdout", {
     type: "stdout",
     levels: ["info", "debug"],
@@ -20,5 +20,5 @@ if (isProduction) {
 }
 
 export default <PlatformLoggerSettings> {
-  disableRoutesSummary: isProduction
+  disableRoutesSummary: environment.production
 };

@@ -8,9 +8,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/inspire-bank-api",
-        "main": "apps/inspire-bank-api/src/main.ts",
-        "tsConfig": "apps/inspire-bank-api/tsconfig.app.json",
-        "assets": ["apps/inspire-bank-api/src/assets"]
+        "main": "apps/inspire-bank-api/src/index.ts",
+        "tsConfig": "apps/inspire-bank-api/tsconfig.app.json"
       },
       "configurations": {
         "production": {
