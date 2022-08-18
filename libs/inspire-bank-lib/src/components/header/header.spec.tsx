@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 
 import { Header } from './header';
 
+
 describe('inspire bank header', () => {
   it('should render', () => {
     const { baseElement } = render(<Header title="a" slogan="b" />);
@@ -10,3 +11,4 @@ describe('inspire bank header', () => {
     expect(screen.getByTestId('inspire-bank-header-wrapper')).toBeInTheDocument();
   })
 });
+

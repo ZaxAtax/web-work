@@ -1,0 +1,19 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { AccountCard } from './account-card';
+
+<Meta title="Inspire Bank/Account Card" component={AccountCard} />
+
+export const Template = (args) => <AccountCard {...args} />;
+
+# Account Card
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{ accnumber: "5432216", acctype: "Savings", balance: 1000000, accname: "Dr. Evil" }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
