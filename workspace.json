@@ -1,5 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
-  "projects": {}
+  "projects": {
+    "inspire-bank": "apps/inspire-bank",
+    "inspire-bank-api": "apps/inspire-bank-api",
+    "inspire-bank-e2e": "apps/inspire-bank-e2e",
+    "inspire-bank-lib": "libs/inspire-bank-lib"
+  }
 }

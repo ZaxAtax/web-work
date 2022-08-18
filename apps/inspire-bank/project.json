@@ -1,0 +1,83 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/inspire-bank/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/inspire-bank",
+        "index": "apps/inspire-bank/src/index.html",
+        "baseHref": "/",
+        "main": "apps/inspire-bank/src/main.tsx",
+        "polyfills": "apps/inspire-bank/src/polyfills.ts",
+        "tsConfig": "apps/inspire-bank/tsconfig.app.json",
+        "assets": [
+          "apps/inspire-bank/src/favicon.ico",
+          "apps/inspire-bank/src/assets"
+        ],
+        "styles": ["apps/inspire-bank/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/inspire-bank/src/environments/environment.ts",
+              "with": "apps/inspire-bank/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "inspire-bank:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "inspire-bank:build:development"
+        },
+        "production": {
+          "buildTarget": "inspire-bank:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/inspire-bank/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/inspire-bank"],
+      "options": {
+        "jestConfig": "apps/inspire-bank/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
