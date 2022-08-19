@@ -6,12 +6,55 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "Library name",
+      "description": "Component name",
       "$default": {
         "$source": "argv",
         "index": 0
+      },
+      "x-prompt": "Name of this component."
+    },
+    "project": {
+      "type": "string",
+      "description": "Project name",
+      "alias": "p",
+      "$default": {
+        "$source": "projectName"
+      },
+      "x-prompt": "Name of the project."
+    },
+    "directory": {
+      "type": "string",
+      "description": "Optional directory",
+      "alias": "d"
+    },
+    "e2eDirectory": {
+      "type": "string",
+      "description": "Optional e2e directory",
+      "alias": "ed"
+    },
+    "style": {
+      "type": "string",
+      "description": "The file extension to be used for style files.",
+      "default": "none",
+      "x-prompt": {
+        "message": "The file extension to be used for style files.",
+        "type": "list",
+        "items": [
+          {
+            "value": "scss",
+            "label": "scss"
+          },
+          {
+            "value": "css",
+            "label": "css"
+          },
+          {
+            "value": "none",
+            "label": "none"
+          }
+        ]
       }
     }
   },
-  "required": ["name"]
+  "required": ["name", "project"]
 }

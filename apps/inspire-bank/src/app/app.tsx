@@ -1,13 +1,19 @@
+import { Routes, Route } from 'react-router-dom';
+
+import { Layout, Home, Account, Accounts, Login } from './pages'
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
 
 export function App() {
   return (
-    <>
-      <NxWelcome title="inspire-bank" />
-      <div />
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Login />} />
+        <Route path="/accounts" element={<Accounts />} />
+        <Route path="/accounts/:accnumber" element={<Account />} />
+      </Route>
+    </Routes>
   );
 }
 

@@ -1,0 +1,20 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { <%= className %> } from './<%= fileName %>';
+
+<Meta title="" component={<%= className %>} />
+
+export const Template = (args) => <<%= className %> {...args} />;
+
+# <%= className %>
+
+
+
+@TODO Helpful description for a user goes here before committing.
+
+
+
+<Canvas>
+  <Story name="Primary">
+    {Template.bind({})}
+  </Story>
+</Canvas>

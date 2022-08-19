@@ -1,0 +1,12 @@
+<% if (genStyle) { %>
+// eslint-disable-next-line no-unused-vars
+import styles from './<%= fileName %>.module.<%= style %>';
+
+<% } %>
+export interface <%= className %>Props {};
+
+export const <%= className %> = (props: <%= className %>Props) => {
+  return <div><%= className %></div>;
+};
+
+export default <%= className %>;
