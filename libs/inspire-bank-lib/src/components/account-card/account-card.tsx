@@ -34,9 +34,7 @@ export function AccountCard({
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Account Type: {acctype}
         </Typography>
-        <Typography variant="body2">
-          Balance: ${balance}
-        </Typography>
+        <Typography variant="body2">Balance: ${balance}</Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Learn More</Button>

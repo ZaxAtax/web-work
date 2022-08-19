@@ -10,10 +10,7 @@ export const Template = (args) => <TransactionCard {...args} />;
 Description Here
 
 <Canvas>
-  <Story
-    name="Primary"
-    args={{ balance: 1000, transaction: 100 }}
-  >
+  <Story name="Primary" args={{ balance: 1000, transaction: 100 }}>
     {Template.bind({})}
   </Story>
 </Canvas>

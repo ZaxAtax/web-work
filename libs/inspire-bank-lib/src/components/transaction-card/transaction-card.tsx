@@ -14,14 +14,14 @@ export interface TransactionCardProps {
 
 export function TransactionCard({
   balance,
-  transaction
+  transaction,
 }: TransactionCardProps) {
   const transactionText = useMemo(() => {
     if (transaction < 0) {
-      return `- $${Math.abs(transaction)}`
+      return `- $${Math.abs(transaction)}`;
     }
     if (transaction > 0) {
-      return `+ $${transaction}`
+      return `+ $${transaction}`;
     }
     return '$0';
   }, [transaction]);
@@ -32,13 +32,16 @@ export function TransactionCard({
       data-testid="inspire-bank-transaction-info-wrapper"
     >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom data-testid="inspire-bank-transaction-balance">
+        <Typography
+          sx={{ fontSize: 14 }}
+          color="text.secondary"
+          gutterBottom
+          data-testid="inspire-bank-transaction-balance"
+        >
           Balance: ${balance}
         </Typography>
         <Typography variant="h5" data-testid="inspire-bank-transaction-amount">
-          <>
-            Transaction: {transactionText}
-          </>
+          <>Transaction: {transactionText}</>
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Temp

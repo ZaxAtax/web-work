@@ -1,14 +1,10 @@
-import { useCallback } from "react";
-import { LoginForm } from "@web-work/inspire-bank-lib"
+import { useCallback } from 'react';
+import { LoginForm } from '@web-work/inspire-bank-lib';
 
 export function Login() {
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(() => {}, []);
 
-  }, []);
-  
-  return (
-    <LoginForm onSubmit={handleSubmit} />
-  )
+  return <LoginForm onSubmit={handleSubmit} />;
 }
 
-export default Login
+export default Login;

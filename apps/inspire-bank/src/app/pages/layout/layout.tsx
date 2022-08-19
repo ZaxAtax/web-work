@@ -6,7 +6,16 @@ export function Layout() {
   return (
     <>
       <Header title="Inspire Bank" slogan="We Aim To Inspire" />
-      <Container sx={{ flexGrow: '1 1 auto', marginTop: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <Container
+        sx={{
+          flexGrow: '1 1 auto',
+          marginTop: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <Outlet />
       </Container>
     </>

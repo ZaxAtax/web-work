@@ -4,16 +4,16 @@ import { LoginForm } from './login-form';
 
 <Meta title="Inspire Bank/Login Form" component={LoginForm} />
 
-export const Template = (args) => <Paper sx={{ maxWidth: '20em' }}><LoginForm {...args} /></Paper>;
+export const Template = (args) => (
+  <Paper sx={{ maxWidth: '20em' }}>
+    <LoginForm {...args} />
+  </Paper>
+);
 
 # Login Form
 
 Description Here
 
 <Canvas>
-  <Story
-    name="Primary"
-  >
-    {Template.bind({})}
-  </Story>
+  <Story name="Primary">{Template.bind({})}</Story>
 </Canvas>

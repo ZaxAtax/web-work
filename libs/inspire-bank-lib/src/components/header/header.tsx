@@ -6,7 +6,13 @@ export interface HeaderProps {
 }
 
 export function Header({ title, slogan }: HeaderProps) {
-  return <AppBar position="static" data-testid="inspire-bank-header-wrapper"><Toolbar>{title} {slogan}</Toolbar></AppBar>;
+  return (
+    <AppBar position="static" data-testid="inspire-bank-header-wrapper">
+      <Toolbar>
+        {title} {slogan}
+      </Toolbar>
+    </AppBar>
+  );
 }
 
 export default Header;
