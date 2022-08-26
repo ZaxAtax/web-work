@@ -12,7 +12,7 @@ module.exports = {
   ],
   addons: [...rootMain.addons, '@nrwl/react/plugins/storybook'],
   features: {
-    previewMdx2: true, 
+    previewMdx2: true,
   },
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js
