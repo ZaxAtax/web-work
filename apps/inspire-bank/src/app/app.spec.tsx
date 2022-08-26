@@ -5,7 +5,11 @@ import App from './app';
 
 describe('App', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<MemoryRouter><App /></MemoryRouter>);
+    const { baseElement } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
 
     expect(baseElement).toBeTruthy();
   });
