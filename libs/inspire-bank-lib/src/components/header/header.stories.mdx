@@ -1,0 +1,19 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Header } from './header';
+
+<Meta title="Inspire Bank/Header" component={Header} />
+
+export const Template = (args) => <Header {...args} />;
+
+# Header
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{ title: 'Inspire Bank', slogan: 'We Aim To Inspire' }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

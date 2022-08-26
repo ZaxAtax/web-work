@@ -1,0 +1,83 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    steps:
+      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
+      - name: Setup node
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+      - run: npx nx-cloud start-ci-run
+      - name: Workspace lint
+        run: npx nx-cloud record -- npx nx workspace-lint
+      - name: Format check
+        run: npx nx-cloud record -- npx nx format:check
+      - name: Lint
+        run: npx nx affected --target=lint --parallel=3
+      - name: Test
+        run: npx nx affected --target=test --parallel=3 --ci --code-coverage
+      - name: Build
+        run: npx nx affected --target=build --parallel=3
+      - if: always()
+        run: npx nx-cloud stop-all-agents
+  pre:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
+      - name: Setup node
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+      - run: npx nx-cloud start-ci-run
+      - name: Workspace lint
+        run: npx nx-cloud record -- npx nx workspace-lint
+      - name: Format check
+        run: npx nx-cloud record -- npx nx format:check
+      - name: Lint
+        run: npx nx affected --target=lint --parallel=3
+      - name: Test
+        run: npx nx affected --target=test --parallel=3 --ci --code-coverage
+      - name: Build
+        run: npx nx affected --target=build --parallel=3
+      - run: npx nx-cloud stop-all-agents
+  agents:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        agent: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent
