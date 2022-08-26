@@ -7,7 +7,7 @@
       "parserOptions": {
         "project": [
           "libs/inspire-bank-lib/tsconfig.*?.json",
-          "libs\\inspire-bank-lib\\.storybook\\tsconfig.json"
+          "libs/inspire-bank-lib/.storybook/tsconfig.json"
         ]
       },
       "rules": {}
