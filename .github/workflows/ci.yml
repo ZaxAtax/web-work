@@ -34,7 +34,8 @@ jobs:
         run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       - name: Build
         run: npx nx affected --target=build --parallel=3
-      - run: npx nx-cloud stop-all-agents
+      - if: always()
+        run: npx nx-cloud stop-all-agents
   pre:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}

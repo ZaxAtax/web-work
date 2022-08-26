@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "inspire-bank": "apps/inspire-bank",
+    "inspire-bank-api": "apps/inspire-bank-api",
     "inspire-bank-e2e": "apps/inspire-bank-e2e",
     "inspire-bank-lib": "libs/inspire-bank-lib",
     "inspire-bank-lib-e2e": "apps/inspire-bank-lib-e2e"
