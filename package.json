@@ -60,6 +60,7 @@
     "webpack": "^5.74.0"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.159.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mdx-js/react": "^2.1.3",

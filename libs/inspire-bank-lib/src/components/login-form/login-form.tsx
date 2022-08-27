@@ -28,7 +28,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
       event.preventDefault();
       onSubmit(username, password);
     },
-    [username, password]
+    [onSubmit, username, password]
   );
 
   return (
