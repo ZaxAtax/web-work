@@ -7,11 +7,16 @@ import {
   SignUpCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
 
+export interface CognitoServiceConfiguration {
+  region: string;
+  clientID: string;
+}
+
 export class CognitoService {
   client: CognitoIdentityProviderClient;
   clientID: string;
 
-  constructor(region: string, clientID: string) {
+  constructor({ region, clientID }: CognitoServiceConfiguration) {
     this.client = new CognitoIdentityProviderClient({ region });
     this.clientID = clientID;
   }
@@ -86,4 +91,9 @@ export class CognitoService {
   }
 }
 
-export default CognitoService;
+export const cognito = new CognitoService({
+  region: 'us-east-1',
+  clientID: '3vcdl1a41c86jei227nu846jqk',
+});
+
+export default cognito;

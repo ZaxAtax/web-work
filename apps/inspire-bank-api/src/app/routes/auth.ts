@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import CognitoService from '../services/cognito';
+import { cognito } from '../services/cognito';
 
-const cognito = new CognitoService('us-east-1', '3vcdl1a41c86jei227nu846jqk');
 export const loginHandler = (req: Request, res: Response) => {
   cognito
     .login(req.body.username, req.body.password)
@@ -50,7 +49,7 @@ export const signUpHandler = (req: Request, res: Response) => {
       });
     })
     .catch((err) => {
-        console.error(err)
+      console.error(err);
       res.status(400).send('Bad Request');
     });
 };

@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test"
+    "start": "nx run-many --target=serve --projects=inspire-bank,inspire-bank-api",
+    "build": "nx run-many --target=build --projects=inspire-bank,inspire-bank-api,inspire-bank-lib",
+    "test": "nx run-many --target=test --projects=inspire-bank,inspire-bank-api,inspire-bank-lib"
   },
   "private": true,
   "devDependencies": {
@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.159.0",
+    "@aws-sdk/client-rds-data": "^3.163.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mdx-js/react": "^2.1.3",
