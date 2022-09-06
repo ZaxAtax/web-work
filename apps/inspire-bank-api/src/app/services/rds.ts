@@ -1,52 +1,29 @@
-import {
-  RDSDataClient,
-  ExecuteStatementCommand,
-} from '@aws-sdk/client-rds-data';
-
-export interface RdsServiceConfiguration {
-  secretArn: string;
-  dbArn: string;
-  region: string;
-  database: string;
-}
+import { Client } from 'pg';
 
 export class RdsService {
-  dbArn: string;
-
-  secretArn: string;
-
-  client: RDSDataClient;
-
-  database: string;
-
-  constructor({ secretArn, dbArn, region, database }: RdsServiceConfiguration) {
-    this.dbArn = dbArn;
-    this.secretArn = secretArn;
-    this.client = new RDSDataClient({ region });
-    this.database = database;
-
-    // Create tables here
+  client: Client;
+  constructor(
+    user: string,
+    password: string,
+    port: string | number,
+    host: string,
+    database: string
+  ) {
+    this.client = new Client({
+      user,
+      host,
+      database,
+      password,
+      port,
+    });
+    this.client.connect();
   }
 
-  // TODO: add transaction support
-  executeStatement(statement: string) {
-    return this.client.send(
-      new ExecuteStatementCommand({
-        resourceArn: this.dbArn,
-        secretArn: this.secretArn,
-        database: this.database,
-        sql: statement,
-      })
-    );
+  executeStatement(statement: { text: string; values: unknown[] }) {
+    return this.client.query(statement);
   }
 }
-
-export const rds = new RdsService({
-  dbArn: 'arn:aws:rds:us-east-1:713231858018:db:inspire-bank-db',
-  secretArn:
-    'arn:aws:secretsmanager:us-east-1:713231858018:secret:dbsecret-UlyLRQ',
-  region: 'us-east-1',
-  database: 'inspire-bank-db',
-});
+const {PG_USER, PG_PASS, PG_DB, PG_HOST, PG_PORT} = process.env
+export const rds = new RdsService(PG_USER, PG_PASS, PG_PORT, PG_HOST, PG_DB);
 
 export default rds;

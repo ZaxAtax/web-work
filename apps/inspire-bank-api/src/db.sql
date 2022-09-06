@@ -73,6 +73,7 @@ $ uuid $ LANGUAGE plpgsql;
 
 CREATE TABLE IF NOT EXISTS Accounts (
     AccountNumber CHAR(9) DEFAULT accountUUID(),
+    CognitoSub CHAR(36) NOT NULL,
     AccountType ACCOUNT_TYPE NOT NULL,
     CurrentBalance MONEY DEFAULT 0,
     Created TIMESTAMPTZ DEFAULT NOW(),

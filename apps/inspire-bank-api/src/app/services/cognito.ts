@@ -3,6 +3,7 @@ import {
   ConfirmForgotPasswordCommand,
   ConfirmSignUpCommand,
   ForgotPasswordCommand,
+  GetUserCommand,
   InitiateAuthCommand,
   SignUpCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
@@ -88,6 +89,12 @@ export class CognitoService {
         ConfirmationCode: confirmationCode,
       })
     );
+  }
+
+  getUser(AccessToken: string) {
+    return this.client.send(new GetUserCommand({
+      AccessToken
+    }))
   }
 }
 
